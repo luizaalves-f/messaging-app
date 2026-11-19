@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f2">
+  <title>Mesma Conversa · Chat distribuído</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Mesma Conversa, início">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 5h20v16H15l-7 6v-6H6z"/><path d="M11 11h10M11 15h7"/></svg>
+      Mesma Conversa<span class="brand-divider"></span><span class="brand-caption">Laboratório de sistemas distribuídos</span>
+    </a>
+    <span class="local-label"><span class="dot"></span> UDP · processos independentes</span>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="title">
+      <div><p class="eyebrow">PARTE 02 / COMUNICAÇÃO EM GRUPO</p>
+      <h1>Uma conversa. Três perspectivas.</h1>
+      <p>Cada participante mantém sua própria réplica. Descubra o que muda quando a rede muda a ordem.</p></div>
+      <a href="/api/export" class="button secondary" download>↓ Exportar evidências</a>
+    </section>
+
+    <section class="controls" aria-label="Configuração do experimento">
+      <div class="control-group"><label for="mode">Garantia de ordenação</label>
+        <div class="inline"><select id="mode"><option value="total">Ordem total · sequenciador</option><option value="fifo">FIFO · por remetente</option></select>
+        <button id="reset" class="button secondary" title="Limpa o histórico e inicia uma nova sessão">Nova sessão ↻</button></div>
+      </div>
+      <div class="control-group"><label for="loss">Perda de pacotes recebidos</label>
+        <select id="loss"><option value="0">0% · sem perda</option><option value="0.1">10% · rede instável</option><option value="0.3">30% · com retransmissão</option><option value="0.5">50% · teste de estresse</option></select>
+      </div>
+      <div class="control-group scenarios"><span class="control-label">Cenários guiados · iniciam uma nova sessão</span>
+        <div class="inline"><button id="concurrent" class="button secondary">⇄ Mensagens concorrentes</button><button id="causal" class="button primary">↳ Resposta antes da pergunta</button></div>
+      </div>
+    </section>
+
+    <div class="statusbar" role="status" aria-live="polite">
+      <span id="comparison"><span class="dot"></span>Conectando aos participantes…</span>
+      <span id="session" class="mono"></span>
+    </div>
+    <p id="mode-note" class="mode-note"></p>
+    <div id="notice" class="notice" role="status" hidden></div>
+    <div id="error" class="error" role="alert" hidden></div>
+
+    <section id="replicas" class="replicas" aria-label="Conversas replicadas"></section>
+
+    <details id="inspector" class="inspector">
+      <summary><span>⌘ Inspetor da rede e das réplicas</span><span class="subtle">ACKs, buffers, sequência e decisões</span></summary>
+      <div id="inspection" class="inspection"></div>
+    </details>
+    <footer><span>Multicast confiável sobre UDP · ACK + retransmissão + FIFO</span><span>Grupo fixo · estado em memória · sem eleição de líder</span></footer>
+  </main>
+
+  <dialog id="edit-dialog" aria-labelledby="edit-title">
+    <form id="edit-form"><p class="eyebrow">ALTERAR MENSAGEM</p><h2 id="edit-title">A edição também percorre a rede.</h2>
+      <label for="edit-text">Novo texto</label><textarea id="edit-text" maxlength="1000" rows="5" required></textarea>
+      <p id="edit-error" role="alert" class="error" hidden></p>
+      <div class="dialog-actions"><button type="button" id="edit-cancel" class="button secondary">Cancelar</button><button type="submit" class="button primary">Enviar edição</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

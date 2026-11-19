@@ -1,0 +1,11 @@
+{
+  "epoch": "aula-parte-2-sessao-1",
+  "mode": "total",
+  "loss": 0.0,
+  "rto": 0.15,
+  "members": [
+    {"id": "ana", "name": "Ana", "host": "127.0.0.1", "udp_port": 9100, "http_port": 9200},
+    {"id": "bruno", "name": "Bruno", "host": "127.0.0.1", "udp_port": 9101, "http_port": 9201},
+    {"id": "carla", "name": "Carla", "host": "127.0.0.1", "udp_port": 9102, "http_port": 9202}
+  ]
+}

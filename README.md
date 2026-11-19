@@ -26,8 +26,28 @@ A métrica original de mensagens fora de ordem continua podendo ser maior que ze
 
 Para executar, use a mesma ordem da seção abaixo, com `GroupMngr.py`, `peerCommunicator.py` e `comparisonServer.py` de `reliable_multicast/`.
 
-## Como executar
+### Como executar
 Requisitos: Python 3 e `pip install requests` nas instâncias dos peers.
 
 1. Edite o `constMP.py` com o IP público da instância do servidor e o número de peers (`N`).
 2. Siga a ordem descrita na seção "Como executar" de [COMPARACAO_RPC.md](rpc_communication/COMPARACAO_RPC.md).
+
+
+## Parte 2 — Mesma Conversa
+
+Chat de grupo replicado com **processos independentes e multicast confiável sobre UDP**.
+Permite comparar FIFO por remetente com ordem total por sequenciador, responder,
+editar e apagar mensagens e reproduzir conflitos de ordenação com atrasos e perda de pacotes.
+O painel mostra as três conversas, métricas da rede e logs exportáveis.
+
+Requisito desta parte: **Python 3.10+**, sem dependências externas. Na raiz:
+
+```bash
+python3 -m group_chat
+```
+
+Abra **http://127.0.0.1:8080**. Para encerrar o painel e os peers, use `Ctrl+C`.
+
+Veja [a documentação da parte 2](group_chat/README.md) para os cenários de apresentação,
+arquitetura, garantias, limites, testes e execução em máquinas distintas.
+As implementações da parte 1 abaixo permanecem preservadas.
